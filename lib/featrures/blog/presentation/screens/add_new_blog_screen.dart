@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/core/theme/app_palette.dart';
+import 'package:flutter_clean_architecture/core/utils/pick_image.dart';
 
 import '../widgets/blog_editor.dart';
 
@@ -18,6 +21,17 @@ class _AddNewBlogScreenState extends State<AddNewBlogScreen> {
   final titleController = TextEditingController();
   final contentController = TextEditingController();
   List<String> selectedTopics = [];
+  File? image;
+
+  void selectImage() async {
+    print('i am called');
+    final pickedImage = await pickImage();
+    if (pickedImage != null) {
+      setState(() {
+        image = pickedImage;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -44,33 +58,54 @@ class _AddNewBlogScreenState extends State<AddNewBlogScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              DottedBorder(
-                color: AppPalette.borderColor,
-                dashPattern: const [10, 4],
-                borderType: BorderType.RRect,
-                strokeCap: StrokeCap.round,
-                radius: const Radius.circular(10),
-                child: Container(
-                  height: 150,
-                  width: double.infinity,
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.folder_open,
-                        size: 40,
-                      ),
-                      SizedBox(height: 15),
-                      Text(
-                        'Select your image',
-                        style: TextStyle(
-                          fontSize: 15,
+              image != null
+                  ? GestureDetector(
+                onTap: selectImage,
+                    child: SizedBox(
+                        height: 150,
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            image!,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                      ),
+                  )
+                  : GestureDetector(
+                      onTap: () {
+                        selectImage();
+                        print('asdfsadf');
+                      },
+                      child: DottedBorder(
+                        color: AppPalette.borderColor,
+                        dashPattern: const [10, 4],
+                        borderType: BorderType.RRect,
+                        strokeCap: StrokeCap.round,
+                        radius: const Radius.circular(10),
+                        child: Container(
+                          height: 150,
+                          width: double.infinity,
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.folder_open,
+                                size: 40,
+                              ),
+                              SizedBox(height: 15),
+                              Text(
+                                'Select your image',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
               const SizedBox(
                 height: 20,
               ),
