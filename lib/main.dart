@@ -8,6 +8,8 @@ import 'package:flutter_clean_architecture/featrures/auth/presentation/bloc/auth
 import 'package:flutter_clean_architecture/featrures/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_clean_architecture/init_dependences.dart';
 
+import 'featrures/blog/presentation/screens/blog_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
@@ -52,11 +54,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const Scaffold(
-              body: Center(
-                child: Text('Logged in!'),
-              ),
-            );
+            return const BlogScreen();
           }
           return const LoginScreen();
         },
