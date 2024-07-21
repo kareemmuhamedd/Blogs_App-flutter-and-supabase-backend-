@@ -6,6 +6,7 @@ import 'package:flutter_clean_architecture/core/theme/theme.dart';
 
 import 'package:flutter_clean_architecture/featrures/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/screens/login_screen.dart';
+import 'package:flutter_clean_architecture/featrures/blog/presentation/bloc/blog_bloc.dart';
 import 'package:flutter_clean_architecture/init_dependences.dart';
 
 import 'featrures/blog/presentation/screens/blog_screen.dart';
@@ -21,6 +22,9 @@ void main() async {
         ),
         BlocProvider(
           create: (_) => serviceLocator<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => serviceLocator<BlogBloc>(),
         ),
       ],
       child: const MyApp(),

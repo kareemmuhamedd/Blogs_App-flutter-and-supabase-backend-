@@ -6,7 +6,7 @@ import 'package:flutter_clean_architecture/featrures/blog/data/data_sources/blog
 import 'package:flutter_clean_architecture/featrures/blog/data/models/blog_model.dart';
 import 'package:flutter_clean_architecture/featrures/blog/domain/entities/blog.dart';
 import 'package:flutter_clean_architecture/featrures/blog/domain/repositories/blog_repository.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
 class BlogRepositoryImpl implements BlogRepository {
