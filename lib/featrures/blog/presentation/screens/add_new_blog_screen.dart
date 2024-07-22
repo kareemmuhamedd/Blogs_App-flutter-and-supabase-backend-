@@ -1,11 +1,10 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:flutter_clean_architecture/core/common/widgets/loader.dart';
+import 'package:flutter_clean_architecture/core/constants/constants.dart';
 import 'package:flutter_clean_architecture/core/theme/app_palette.dart';
 import 'package:flutter_clean_architecture/core/utils/pick_image.dart';
 import 'package:flutter_clean_architecture/core/utils/show_snackbar.dart';
@@ -121,7 +120,6 @@ class _AddNewBlogScreenState extends State<AddNewBlogScreen> {
                         : GestureDetector(
                             onTap: () {
                               selectImage();
-                              print('asdfsadf');
                             },
                             child: DottedBorder(
                               color: AppPalette.borderColor,
@@ -129,10 +127,10 @@ class _AddNewBlogScreenState extends State<AddNewBlogScreen> {
                               borderType: BorderType.RRect,
                               strokeCap: StrokeCap.round,
                               radius: const Radius.circular(10),
-                              child: Container(
+                              child: const SizedBox(
                                 height: 150,
                                 width: double.infinity,
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
@@ -157,12 +155,7 @@ class _AddNewBlogScreenState extends State<AddNewBlogScreen> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: [
-                          'Technology',
-                          'Business',
-                          'Programming',
-                          'Entertainment',
-                        ]
+                        children: Constants.topics
                             .map(
                               (e) => Padding(
                                 padding: const EdgeInsets.all(5.0),

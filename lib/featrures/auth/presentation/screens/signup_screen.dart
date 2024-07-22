@@ -6,6 +6,7 @@ import 'package:flutter_clean_architecture/core/utils/show_snackbar.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/widgets/auth_gradient_button.dart';
 
+import '../../../blog/presentation/screens/blog_screen.dart';
 import '../widgets/auth_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -43,6 +44,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   listener: (context, state) {
     if (state is AuthFailure){
       showSnackBar(context, state.message);
+    }
+    else if (state is AuthSuccess) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        BlogScreen.route(),
+            (route) => false,
+      );
     }
   },
   builder: (context, state) {

@@ -7,6 +7,7 @@ import 'package:flutter_clean_architecture/core/utils/show_snackbar.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/screens/signup_screen.dart';
 import 'package:flutter_clean_architecture/featrures/auth/presentation/widgets/auth_gradient_button.dart';
+import 'package:flutter_clean_architecture/featrures/blog/presentation/screens/blog_screen.dart';
 
 import '../widgets/auth_field.dart';
 
@@ -42,6 +43,12 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state is AuthFailure) {
               showSnackBar(context, state.message);
+            } else if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                BlogScreen.route(),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {
@@ -51,12 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
             return Form(
               key: formKey,
               child: SingleChildScrollView(
-
                 child: Padding(
                   padding: const EdgeInsets.only(top: 100),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       const Text(
                         'Sign In.',
