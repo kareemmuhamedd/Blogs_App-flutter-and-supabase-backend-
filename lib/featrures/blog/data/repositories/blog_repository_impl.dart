@@ -39,6 +39,7 @@ class BlogRepositoryImpl implements BlogRepository {
       blogModel = blogModel.copyWith(
         imageUrl: imageUrl,
       );
+
       final uploadedBlog = await blogRemoteDataSource.uploadBlog(
         blogModel,
       );

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/featrures/blog/presentation/screens/add_new_blog_screen.dart';
 
 class BlogScreen extends StatelessWidget {
+  static route() => MaterialPageRoute(builder: (context) => const BlogScreen());
+
   const BlogScreen({super.key});
 
   @override
